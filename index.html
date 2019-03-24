@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RGB Controller</title>
+</head>
+<body>
+    <p>
+        R
+        <input type="range" min="1" max="255" value="0" class="slider" id="rValue" onchange="setRGBValue('red', this.value)">
+    </p>
+    <p>
+        G
+        <input type="range" min="1" max="255" value="0" class="slider" id="gValue" onchange="setRGBValue('green', this.value)">
+    </p>
+    <p>
+        B
+        <input type="range" min="1" max="255" value="0" class="slider" id="bValue" onchange="setRGBValue('blue', this.value)">
+    </p>
+    
+    <p id="responseText">
+
+    </p>
+
+    <script>
+        function setRGBValue(color, value) {
+            var setColor = new XMLHttpRequest();
+            setColor.open("GET", "http://192.168.1.81/" + color + "/" + value);
+            setColor.send(null);
+            document.getElementById('responseText').value = setColor.responseText;
+        }
+            
+    </script>
+</body>
